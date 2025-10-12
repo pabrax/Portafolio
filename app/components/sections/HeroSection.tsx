@@ -1,23 +1,23 @@
 import { Github, Linkedin, Mail, Code2, Star } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 export function HeroSection() {
   return (
     <section id="home" className="mb-24 flex min-h-screen flex-col items-center justify-center text-center pt-16">
       <div className="mb-6 inline-flex items-center gap-2 text-muted-foreground">
         <Code2 className="h-5 w-5" />
-        <span>Full Stack Developer & AI Specialist</span>
+        <span>Full Stack Developer & Python Specialist</span>
       </div>
       
       <h1 className="mb-6 text-4xl md:text-5xl lg:text-6xl font-bold">
         Hola, soy <span className="gradient-text">Pablo</span>
       </h1>
       
-      <p className="mb-8 mx-auto max-w-2xl text-muted-foreground">
-        Desarrollador <span className="gradient-text-secondary font-semibold">Full Stack especializado en Inteligencia Artificial</span>, 
-        enfocado en crear <span className="gradient-text-accent font-semibold">APIs RESTful robustas</span> y 
-        <span className="gradient-text-ai font-semibold"> soluciones inteligentes automatizadas</span> con 
-        <span className="gradient-text font-semibold"> arquitecturas modernas</span> y código limpio.
+      <p className="mb-8 mx-auto max-w-2xl text-muted-foreground text-lg leading-relaxed">
+        <span className="gradient-text-secondary font-semibold">+2 años de experiencia</span> como Desarrollador{" "}
+        <span className="gradient-text font-semibold">Full Stack especializado en Python y Automatización</span>. 
+        Enfocado en crear <span className="gradient-text-accent font-semibold">soluciones web personalizadas</span> y{" "}
+        <span className="gradient-text-ai font-semibold">herramientas que faciliten la vida de las personas</span>.
       </p>
 
       <div className="flex flex-wrap gap-4 justify-center">

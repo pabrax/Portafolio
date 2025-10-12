@@ -1,5 +1,5 @@
-import { Card } from "./ui/card";
-import { Button } from "./ui/button";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 import { Mail, Linkedin, Github, Twitter, Globe, Star } from "lucide-react";
 
 const contactLinks = [
@@ -72,10 +72,15 @@ export function ContactSection() {
           
           <div className="mb-6">
             <p className="mb-4 text-muted-foreground">
-              ¿Buscas un desarrollador Full Stack especializado en IA para tu próximo proyecto? Tengo experiencia creando soluciones web completas y sistemas inteligentes.
+              ¿Buscas un <span className="gradient-text font-semibold">desarrollador Full Stack especializado en IA</span> para tu próximo proyecto? 
+              Tengo experiencia creando <span className="gradient-text-accent font-semibold">soluciones web completas</span> y{" "}
+              <span className="gradient-text-ai font-semibold">sistemas inteligentes</span>.
             </p>
             <p className="mb-6 text-muted-foreground">
-              Desde APIs RESTful robustas hasta interfaces modernas con React/Angular, pasando por sistemas RAG, bots inteligentes y automatizaciones con IA. Disponible para proyectos freelance y colaboraciones.
+              Desde <span className="gradient-text-secondary font-semibold">APIs RESTful robustas</span> hasta{" "}
+              <span className="gradient-text font-semibold">interfaces modernas con React/Angular</span>, pasando por{" "}
+              <span className="gradient-text-ai font-semibold">sistemas RAG, bots inteligentes y automatizaciones con IA</span>. 
+              Disponible para <span className="gradient-text-accent font-semibold">proyectos freelance y colaboraciones</span>.
             </p>
             <Button className="w-full btn-primary-hover border-2 border-primary/20 hover:border-primary/40" asChild>
               <a href="mailto:soypablo0420@gmail.com">

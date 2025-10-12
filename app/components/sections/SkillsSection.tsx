@@ -1,5 +1,5 @@
-import { Badge } from "./ui/badge";
-import { Card } from "./ui/card";
+import { Badge } from "../ui/badge";
+import { Card } from "../ui/card";
 
 const skillCategories = [
   {
@@ -19,7 +19,7 @@ const skillCategories = [
   },
   {
     title: "IA & Automatización",
-    skills: ["Agentes de IA", "Automatizaciones", "Bots", "Machine Learning", "OpenAI API", "Langchain"],
+    skills: ["Agentes de IA", "Automatizaciones", "Bots", "Machine Learning", "llama_index", "Langchain"],
     badgeClass: "badge-ai"
   }
 ];

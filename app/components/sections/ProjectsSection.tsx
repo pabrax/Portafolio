@@ -1,8 +1,8 @@
-import { Card } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { Card } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 import { Github, ExternalLink } from "lucide-react";
-// import { ImageWithFallback } from "./ui/image-with-fallback";
+// import { ImageWithFallback } from "../image/ImageWithFallback";
 
 // Función para asignar colores a las tecnologías
 const getTechBadgeClass = (tech: string) => {
@@ -47,10 +47,10 @@ const projects = [
   {
     title: "LocalSongs - Music Downloader",
     description: "Aplicación web para descargar música de YouTube y Spotify mediante URLs. Cliente desarrollado con Next.js y backend con FastAPI, con soporte para descargas de playlists y selección de calidad de audio.",
-    technologies: ["Python", "FastAPI", "Next.js", "React", "YouTube API", "Spotify API"],
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMGFwcCUyMGRvd25sb2FkfGVufDF8fHx8MTc1OTk2NjYyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    technologies: ["Python", "FastAPI", "Next.js", "React", "yt-dlp", "Spotdl"],
+    image: "/images/localsongs_preview.jpeg",
     github: "https://github.com/pabrax/localsongs",
-    demo: null
+    demo: "https://localsongs.vercel.app"
   },
   {
     title: "RAG System - Document AI",
@@ -62,9 +62,9 @@ const projects = [
   },
   {
     title: "Naux Discord Bot",
-    description: "Bot de Discord inteligente con capacidades de IA generativa, reproducción de música y comandos de propósito general. Desarrollado para integrarse seamlessly en servidores y responder de manera contextual.",
-    technologies: ["Python", "Discord.py", "AI", "Music Bot", "OpenAI API"],
-    image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXNjb3JkJTIwYm90JTIwYWl8ZW58MXx8fHwxNzU5OTY2NjI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    description: "Bot de Discord inteligente con capacidades de IA generativa, reproducción de música y comandos de propósito general. Desarrollado para integrarse perfectamente en servidores y responder de manera contextual.",
+    technologies: ["Python", "Discord.py", "AI", "Music Bot", "Groq"],
+    image: "images/naux_preview.png",
     github: "https://github.com/pabrax/naux-discord-bot",
     demo: null
   },
@@ -72,7 +72,7 @@ const projects = [
     title: "Dotfiles Configuration",
     description: "Configuración personalizada del entorno de desarrollo usando Bash y Linux. Automatización completa del setup de herramientas, aliases, configuraciones de terminal y scripts de productividad.",
     technologies: ["Bash", "Linux", "Git", "Vim", "Terminal", "Automation"],
-    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW51eCUyMHRlcm1pbmFsJTIwc2V0dXB8ZW58MXx8fHwxNzU5OTY2NjI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "/images/dotfiles_preview.png",
     github: "https://github.com/pabrax/dotfiles",
     demo: null
   }
