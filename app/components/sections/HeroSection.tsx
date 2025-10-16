@@ -6,7 +6,7 @@ export function HeroSection() {
     <section id="home" className="mb-24 flex min-h-screen flex-col items-center justify-center text-center pt-16">
       <div className="mb-6 inline-flex items-center gap-2 text-muted-foreground">
         <Code2 className="h-5 w-5" />
-        <span>Full Stack Developer & Python Specialist</span>
+        <span>Desarrollador Full Stack | Automatizaciones & Herramientas de IA</span>
       </div>
       
       <h1 className="mb-6 text-4xl md:text-5xl lg:text-6xl font-bold">

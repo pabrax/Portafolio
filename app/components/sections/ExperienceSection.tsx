@@ -42,17 +42,6 @@ const getTechBadgeClass = (tech: string) => {
 
 const experiences = [
   {
-    company: "Freelance",
-    position: "Full Stack Developer",
-    period: "2023 - Presente",
-    duration: "2+ años",
-    location: "Remoto",
-    type: "Freelance",
-    description: "Desarrollo de aplicaciones web completas desde el servidor hasta interfaces de usuario, especializado en APIs RESTful robustas y soluciones personalizadas para diversos clientes.",
-    achievements: "Durante mi experiencia freelance he trabajado principalmente en desarrollo backend con Python, Node.js y C#, creando APIs escalables y sistemas de automatización. También he desarrollado interfaces frontend utilizando Astro y Angular, integrando servicios de terceros y optimizando el rendimiento de aplicaciones. He colaborado con equipos remotos, gestionado proyectos de forma independiente y entregado soluciones técnicas que han mejorado significativamente los procesos de negocio de mis clientes.",
-    technologies: ["Python", "Node.js", "C#", "Astro", "Angular", "FastAPI", "PostgreSQL", "MongoDB", "Docker", "Git"]
-  },
-  {
     company: "Colcafé S.A.S.",
     position: "Practicante Transformación Digital",
     period: "Feb. 2025 - Ago. 2025",
@@ -62,6 +51,17 @@ const experiences = [
     description: "Automatización de flujos de trabajo administrativos mediante Google Apps Script, logrando una reducción significativa en los tiempos operativos y eliminando tareas repetitivas.",
     achievements: "Desarrollé aplicaciones no-code con AppSheet para optimizar la gestión interna de datos y mejorar la visualización en tiempo real. Implementé procesos ETL utilizando Python y Pandas, complementado con dashboards interactivos en Power BI y Looker Studio para generar información accionable. Documenté y estandaricé procesos técnicos (macros, scripts y desarrollos) garantizando su sostenibilidad y reutilización a través de repositorios Git/GitHub. Impulsé la adopción de Jira como herramienta de gestión de tareas, fortaleciendo la trazabilidad y colaboración del equipo.",
     technologies: ["Python", "Google Apps Script", "AppSheet", "Power BI", "Pandas", "Jira", "Git", "GitHub"]
+  },
+  {
+    company: "Freelance",
+    position: "Full Stack Developer",
+    period: "2023 - Presente",
+    duration: "2+ años",
+    location: "Remoto",
+    type: "Freelance",
+    description: "Desarrollo de aplicaciones web completas desde el servidor hasta interfaces de usuario, especializado en APIs RESTful robustas y soluciones personalizadas para diversos clientes.",
+    achievements: "Durante mi experiencia freelance he trabajado principalmente en desarrollo backend con Python, Node.js y C#, creando APIs escalables y sistemas de automatización. También he desarrollado interfaces frontend utilizando Astro y Angular, integrando servicios de terceros y optimizando el rendimiento de aplicaciones. He colaborado con equipos remotos, gestionado proyectos de forma independiente y entregado soluciones técnicas que han mejorado significativamente los procesos de negocio de mis clientes.",
+    technologies: ["Python", "Node.js", "C#", "Astro", "Angular", "FastAPI", "PostgreSQL", "MongoDB", "Docker", "Git"]
   }
 ];
 
@@ -128,9 +128,8 @@ export function ExperienceSection() {
               <div className="flex flex-wrap gap-2">
                 <span className="text-sm font-medium text-muted-foreground mb-2 block w-full">Tecnologías utilizadas:</span>
                 {exp.technologies.map((tech) => (
-                  <a
+                  <p
                     key={tech}
-                    href={`#${tech.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '')}`}
                     className="inline-block"
                   >
                     <Badge 
@@ -139,7 +138,7 @@ export function ExperienceSection() {
                     >
                       {tech}
                     </Badge>
-                  </a>
+                  </p>
                 ))}
               </div>
             </div>

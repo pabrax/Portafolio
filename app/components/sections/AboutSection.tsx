@@ -30,7 +30,7 @@ export function AboutSection() {
             <div className="text-center space-y-2">
               <div className="flex items-center justify-center gap-2">
                 <Brain className="w-5 h-5 text-purple-500" />
-                <span className="gradient-text-ai font-semibold">IA Specialist</span>
+                <span className="gradient-text-ai font-semibold">IA Developer</span>
               </div>
               <div className="flex items-center justify-center gap-2">
                 <Zap className="w-5 h-5 text-blue-500" />

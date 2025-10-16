@@ -72,14 +72,14 @@ export function ContactSection() {
           
           <div className="mb-6">
             <p className="mb-4 text-muted-foreground">
-              ¿Buscas un <span className="gradient-text font-semibold">desarrollador Full Stack especializado en IA</span> para tu próximo proyecto? 
-              Tengo experiencia creando <span className="gradient-text-accent font-semibold">soluciones web completas</span> y{" "}
-              <span className="gradient-text-ai font-semibold">sistemas inteligentes</span>.
+              ¿Buscas un <span className="gradient-text font-semibold">desarrollador Full Stack con enfoque en IA y automatización</span> para tu próximo proyecto? 
+              Tengo experiencia creando <span className="gradient-text-accent font-semibold">soluciones web completas</span> e integrando{" "}
+              <span className="gradient-text-ai font-semibold">componentes inteligentes</span> en entornos reales.
             </p>
             <p className="mb-6 text-muted-foreground">
-              Desde <span className="gradient-text-secondary font-semibold">APIs RESTful robustas</span> hasta{" "}
-              <span className="gradient-text font-semibold">interfaces modernas con React/Angular</span>, pasando por{" "}
-              <span className="gradient-text-ai font-semibold">sistemas RAG, bots inteligentes y automatizaciones con IA</span>. 
+              Desde <span className="gradient-text-secondary font-semibold">APIs RESTful escalables</span> hasta{" "}
+              <span className="gradient-text font-semibold">interfaces modernas con React o Angular</span>, pasando por{" "}
+              <span className="gradient-text-ai font-semibold">sistemas RAG, bots y automatizaciones con IA</span>. 
               Disponible para <span className="gradient-text-accent font-semibold">proyectos freelance y colaboraciones</span>.
             </p>
             <Button className="w-full btn-primary-hover border-2 border-primary/20 hover:border-primary/40" asChild>
@@ -89,6 +89,7 @@ export function ContactSection() {
               </a>
             </Button>
           </div>
+
         </Card>
       </div>
 

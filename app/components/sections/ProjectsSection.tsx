@@ -48,7 +48,7 @@ const projects = [
     title: "LocalSongs - Music Downloader",
     description: "Aplicación web para descargar música de YouTube y Spotify mediante URLs. Cliente desarrollado con Next.js y backend con FastAPI, con soporte para descargas de playlists y selección de calidad de audio.",
     technologies: ["Python", "FastAPI", "Next.js", "React", "yt-dlp", "Spotdl"],
-    image: "/images/localsongs_preview.jpeg",
+    image: "preview/localsongs_preview.jpeg",
     github: "https://github.com/pabrax/localsongs",
     demo: "https://localsongs.vercel.app"
   },
@@ -64,7 +64,7 @@ const projects = [
     title: "Naux Discord Bot",
     description: "Bot de Discord inteligente con capacidades de IA generativa, reproducción de música y comandos de propósito general. Desarrollado para integrarse perfectamente en servidores y responder de manera contextual.",
     technologies: ["Python", "Discord.py", "AI", "Music Bot", "Groq"],
-    image: "images/naux_preview.png",
+    image: "preview/naux_preview.png",
     github: "https://github.com/pabrax/naux-discord-bot",
     demo: null
   },
@@ -72,7 +72,7 @@ const projects = [
     title: "Dotfiles Configuration",
     description: "Configuración personalizada del entorno de desarrollo usando Bash y Linux. Automatización completa del setup de herramientas, aliases, configuraciones de terminal y scripts de productividad.",
     technologies: ["Bash", "Linux", "Git", "Vim", "Terminal", "Automation"],
-    image: "/images/dotfiles_preview.png",
+    image: "preview/dotfiles_preview.png",
     github: "https://github.com/pabrax/dotfiles",
     demo: null
   }
@@ -107,9 +107,8 @@ export function ProjectsSection() {
               
               <div className="mb-4 flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
-                  <a
+                  <p
                     key={tech}
-                    href={`#${tech.toLowerCase().replace(/\s+/g, '-').replace(/\./g, '')}`}
                     className="inline-block"
                   >
                     <Badge 
@@ -118,7 +117,7 @@ export function ProjectsSection() {
                     >
                       {tech}
                     </Badge>
-                  </a>
+                  </p>
                 ))}
               </div>
               
