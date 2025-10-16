@@ -38,6 +38,7 @@ git clone <tu-repositorio>
 npm install
 
 # Ejecutar en modo desarrollo
+# Ejecutar en modo desarrollo
 npm run dev
 
 # Compilar para producción
