@@ -45,17 +45,17 @@ const getTechBadgeClass = (tech: string) => {
 
 const projects = [
   {
-    title: "LocalSongs - Music Downloader",
-    description: "Aplicación web para descargar música de YouTube y Spotify mediante URLs. Cliente desarrollado con Next.js y backend con FastAPI, con soporte para descargas de playlists y selección de calidad de audio.",
+    title: "SnapLoad",
+    description: "Aplicación web para descargar música Y video plataformas como YouTube y Spotify mediante URLs. Cliente desarrollado con Next.js y backend con FastAPI, con soporte para descargas de playlists y selección de calidad de audio.",
     technologies: ["Python", "FastAPI", "Next.js", "React", "yt-dlp", "Spotdl"],
-    image: "preview/localsongs_preview.jpeg",
-    github: "https://github.com/pabrax/localsongs",
-    demo: "https://localsongs.vercel.app"
+    image: "preview/snapload-ui.png",
+    github: "https://github.com/pabrax/SnapLoad",
+    demo: "https://snap-load-ui.vercel.app"
   },
   {
-    title: "RAG System - Document AI",
-    description: "Sistema RAG (Retrieval-Augmented Generation) desarrollado con LlamaIndex y FastAPI. Permite consultar documentos usando LLMs gratuitos como DeepSeek, con capacidad de ingestar múltiples formatos de archivos.",
-    technologies: ["Python", "FastAPI", "LlamaIndex", "DeepSeek", "RAG", "AI"],
+    title: "data finder RAG System",
+    description: "Sistema RAG (Retrieval-Augmented Generation) desarrollado con LlamaIndex y FastAPI. Permite consultar documentos usando LLMs gratuitos como la API de Groq, Modelos locales con Ollama, con capacidad de ingestar múltiples formatos de archivos.",
+    technologies: ["Python", "FastAPI", "LlamaIndex", "Groq", "RAG", "AI"],
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGRvY3VtZW50JTIwcHJvY2Vzc2luZ3xlbnwxfHx8fDE3NTk5NjY2Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     github: "https://github.com/pabrax/rag-system",
     demo: null
