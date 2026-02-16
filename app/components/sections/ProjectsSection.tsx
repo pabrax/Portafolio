@@ -44,6 +44,14 @@ const getTechBadgeClass = (tech: string) => {
 };
 
 const projects = [
+    {
+    title: "Ambunet",
+    description: "Ambunet es un sistema de informacion para el manejo de datos de ambulancias, pacientes y personal médico. Desarrollado con una arquitectura Feature-First, utilizando React y tailwind para el frontend y backend hecho en Django con una API REST para la gestión de datos y autenticación y Base de datos PostgreSQL.",
+    technologies: ["React", "Tailwind CSS", "Git", "Django", "Typescript", "REST API", "PostgreSQL"],
+    image: "preview/ambunet_preview.png",
+    github: null,
+    demo: null
+  },
   {
     title: "SnapLoad",
     description: "Aplicación web para descargar música Y video plataformas como YouTube y Spotify mediante URLs. Cliente desarrollado con Next.js y backend con FastAPI, con soporte para descargas de playlists y selección de calidad de audio.",
@@ -68,14 +76,6 @@ const projects = [
     github: "https://github.com/pabrax/naux-discord-bot",
     demo: null
   },
-  {
-    title: "Dotfiles Configuration",
-    description: "Configuración personalizada del entorno de desarrollo usando Bash y Linux. Automatización completa del setup de herramientas, aliases, configuraciones de terminal y scripts de productividad.",
-    technologies: ["Bash", "Linux", "Git", "Vim", "Terminal", "Automation"],
-    image: "preview/dotfiles_preview.png",
-    github: "https://github.com/pabrax/dotfiles",
-    demo: null
-  }
 ];
 
 export function ProjectsSection() {
