@@ -1,33 +1,46 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const siteUrl = 'https://portafolio-lovat-rho.vercel.app'
+const title = 'Pablo Espinosa (pabrax) | Datos, automatización y backend'
+const description =
+  'Especialista de Data y Producto en Servicios Nutresa. Tableros en Power BI y HTML, ETL con Python y SQL sobre AWS, automatización y APIs con FastAPI.'
+
 export const metadata: Metadata = {
-  title: 'Pabrax - Full Stack Developer & AI Specialist',
-  description: 'Desarrollador Full Stack especializado en Inteligencia Artificial, sistemas RAG, automatizaciones inteligentes y APIs RESTful. Experto en Python, Node.js, React y tecnologías modernas.',
-  keywords: ['Desarrollador Full Stack', 'Inteligencia Artificial', 'IA', 'RAG', 'Python', 'Node.js', 'React', 'APIs RESTful'],
-  authors: [{ name: 'Pabrax' }],
-  creator: 'Pabrax',
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: ['Python', 'SQL', 'Power BI', 'ETL', 'AWS', 'FastAPI', 'Next.js', 'automatización', 'datos'],
+  authors: [{ name: 'Pablo Espinosa', url: 'https://github.com/pabrax' }],
+  creator: 'Pablo Espinosa',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Pabrax - Full Stack Developer & AI Specialist',
-    description: 'Desarrollador Full Stack especializado en Inteligencia Artificial y automatizaciones inteligentes',
+    title,
+    description,
+    url: siteUrl,
     type: 'website',
-    locale: 'es_ES',
+    locale: 'es_CO',
+    images: [{ url: '/preview/portafolio_preview.jpeg', alt: 'Vista previa del portafolio de Pablo Espinosa' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pabrax - Fullstack Developer & IA Specialist',
-    description: 'Desarrollador Fullstack especializado en IA y automatizaciones inteligentes',
+    title,
+    description,
+    images: ['/preview/portafolio_preview.jpeg'],
   },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
+  icons: { icon: '/favicon.ico' },
   manifest: '/site.webmanifest',
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#14151e' },
+  ],
 }
 
 export default function RootLayout({
