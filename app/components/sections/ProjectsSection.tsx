@@ -1,157 +1,69 @@
-import { Card } from "../ui/card";
-import { Badge } from "../ui/badge";
+import Image from "next/image";
+import { ExternalLink, Github } from "lucide-react";
+import { projects } from "@/data/projects";
 import { Button } from "../ui/button";
-import { Github, ExternalLink } from "lucide-react";
-// import { ImageWithFallback } from "../image/ImageWithFallback";
-
-// Función para asignar colores a las tecnologías
-const getTechBadgeClass = (tech: string) => {
-  const techColors: { [key: string]: string } = {
-    // Lenguajes
-    'Python': 'badge-primary',
-    'Node.js': 'badge-primary',
-    'Go': 'badge-primary',
-    'C#': 'badge-primary',
-    'TypeScript': 'badge-primary',
-    'JavaScript': 'badge-primary',
-    'Java': 'badge-primary',
-    
-    // Frontend
-    'React': 'badge-secondary',
-    'Angular': 'badge-secondary',
-    'Astro': 'badge-secondary',
-    'Next.js': 'badge-secondary',
-    'Vue.js': 'badge-secondary',
-    
-    // Bases de datos
-    'MySQL': 'badge-accent',
-    'MongoDB': 'badge-accent',
-    'PostgreSQL': 'badge-accent',
-    'SQL Server': 'badge-accent',
-    'Redis': 'badge-accent',
-    
-    // Herramientas y otros
-    'Docker': 'badge-ai',
-    'Linux': 'badge-ai',
-    'Git': 'badge-ai',
-    'REST API': 'badge-ai',
-    'GitHub': 'badge-ai',
-    'AWS': 'badge-ai',
-    'Tailwind CSS': 'badge-secondary'
-  };
-  
-  return techColors[tech] || 'badge-primary';
-};
-
-const projects = [
-    {
-    title: "Ambunet",
-    description: "Ambunet es un sistema de informacion para el manejo de datos de ambulancias, pacientes y personal médico. Desarrollado con una arquitectura Feature-First, utilizando React y tailwind para el frontend y backend hecho en Django con una API REST para la gestión de datos y autenticación y Base de datos PostgreSQL.",
-    technologies: ["React", "Tailwind CSS", "Git", "Django", "Typescript", "REST API", "PostgreSQL"],
-    image: "preview/ambunet_preview.png",
-    github: null,
-    demo: null
-  },
-  {
-    title: "SnapLoad",
-    description: "Aplicación web para descargar música Y video plataformas como YouTube y Spotify mediante URLs. Cliente desarrollado con Next.js y backend con FastAPI, con soporte para descargas de playlists y selección de calidad de audio.",
-    technologies: ["Python", "FastAPI", "Next.js", "React", "yt-dlp", "Spotdl"],
-    image: "preview/snapload-ui.png",
-    github: "https://github.com/pabrax/SnapLoad",
-    demo: "https://snap-load-ui.vercel.app"
-  },
-  {
-    title: "data finder RAG System",
-    description: "Sistema RAG (Retrieval-Augmented Generation) desarrollado con LlamaIndex y FastAPI. Permite consultar documentos usando LLMs gratuitos como la API de Groq, Modelos locales con Ollama, con capacidad de ingestar múltiples formatos de archivos.",
-    technologies: ["Python", "FastAPI", "LlamaIndex", "Groq", "RAG", "AI"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGRvY3VtZW50JTIwcHJvY2Vzc2luZ3xlbnwxfHx8fDE3NTk5NjY2Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    github: "https://github.com/pabrax/rag-system",
-    demo: null
-  },
-  {
-    title: "Naux Discord Bot",
-    description: "Bot de Discord inteligente con capacidades de IA generativa, reproducción de música y comandos de propósito general. Desarrollado para integrarse perfectamente en servidores y responder de manera contextual.",
-    technologies: ["Python", "Discord.py", "AI", "Music Bot", "Groq"],
-    image: "preview/naux_preview.png",
-    github: "https://github.com/pabrax/naux-discord-bot",
-    demo: null
-  },
-];
+import { SectionHeading } from "../common/SectionHeading";
+import { TechList } from "../common/TechBadge";
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="mb-24 scroll-mt-20">
-      <h2 className="mb-8 text-center text-3xl md:text-4xl font-bold text-foreground">
-        Proyectos Destacados
-      </h2>
-      
-      <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project, index) => (
-          <Card key={index} className="flex flex-col overflow-hidden border-border/50 bg-card/50 backdrop-blur card-shadow">
-            <div className="relative h-48 overflow-hidden">
-              <img
+    <section id="projects" aria-labelledby="projects-title" className="mb-24 scroll-mt-20">
+      <SectionHeading id="projects-title">Proyectos</SectionHeading>
+
+      <ul className="grid gap-6 md:grid-cols-2">
+        {projects.map((project) => (
+          <li key={project.title} className="surface flex flex-col overflow-hidden">
+            <div className="relative aspect-[16/9] border-b bg-muted">
+              <Image
                 src={project.image}
-                alt={project.title}
-                className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                alt={project.imageAlt}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
               />
             </div>
-            
-            <div className="flex flex-col p-6">
-              <h3 className="mb-3">
-                <span className="gradient-text-accent font-semibold">{project.title}</span>
-              </h3>
-              
-              <p className="mb-4 flex-grow text-muted-foreground">
+
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="mb-2 text-lg font-semibold">{project.title}</h3>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {project.description}
               </p>
-              
-              <div className="mb-4 flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <p
-                    key={tech}
-                    className="inline-block"
-                  >
-                    <Badge 
-                      variant="outline" 
-                      className={`${getTechBadgeClass(tech)} cursor-pointer transition-all duration-200 hover:scale-110 hover:shadow-md`}
-                    >
-                      {tech}
-                    </Badge>
-                  </p>
-                ))}
+              <div className="mb-5">
+                <TechList items={project.technologies} label={`Tecnologías de ${project.title}`} />
               </div>
-              
+
               <div className="flex gap-3">
                 {project.github && (
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    asChild
-                    className="flex-1 project-link-hover"
-                  >
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
+                  <Button variant="outline" size="sm" asChild className="flex-1">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Código de ${project.title} en GitHub`}
+                    >
+                      <Github className="mr-2 h-4 w-4" aria-hidden="true" />
                       Código
                     </a>
                   </Button>
                 )}
                 {project.demo && (
-                  <Button 
-                    size="sm" 
-                    asChild
-                    className="flex-1 btn-primary-hover"
-                  >
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
+                  <Button size="sm" asChild className="flex-1">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Demo de ${project.title}`}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
                       Demo
                     </a>
                   </Button>
                 )}
               </div>
             </div>
-          </Card>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
