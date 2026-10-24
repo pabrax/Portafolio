@@ -103,7 +103,6 @@
     font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.035em;
-    font-variation-settings: "wdth" 100;
   }
 
   /* Lemon marker behind one phrase per view. */
@@ -146,6 +145,21 @@
     @keyframes drift {
       to {
         transform: translateY(var(--drift));
+      }
+    }
+  }
+}
+
+/* Reading progress under the navbar: CSS only, hidden where unsupported. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress {
+      animation: progress linear both;
+      animation-timeline: scroll(root);
+    }
+    @keyframes progress {
+      to {
+        transform: scaleX(1);
       }
     }
   }

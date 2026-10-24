@@ -27,8 +27,13 @@ export default function Home() {
         <ContactSection />
       </main>
 
-      <footer className="mx-auto max-w-6xl border-t px-4 py-8 text-center text-sm text-muted-foreground sm:px-6 lg:px-8">
-        <p>© {new Date().getFullYear()} Pablo Espinosa · Hecho con Next.js y Tailwind CSS</p>
+      <footer className="theme-ink">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p className="font-display-tight text-lg text-foreground">
+            pabrax<span className="text-primary">.</span>
+          </p>
+          <p>© {new Date().getFullYear()} Pablo Espinosa · Hecho con Next.js y Tailwind CSS</p>
+        </div>
       </footer>
     </div>
   );

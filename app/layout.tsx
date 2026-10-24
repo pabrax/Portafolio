@@ -9,7 +9,6 @@ const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  axes: ['opsz', 'wdth'],
 })
 
 const siteUrl = 'https://portafolio-lovat-rho.vercel.app'

@@ -44,8 +44,8 @@ export function Navbar() {
   }, []);
 
   const linkClass = (id: string) =>
-    `rounded-md px-3 py-2 text-sm transition-colors hover:bg-secondary hover:text-foreground ${
-      activeId === id ? "text-foreground" : "text-muted-foreground"
+    `relative rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-foreground after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-primary after:transition-transform after:duration-300 ${
+      activeId === id ? "text-foreground after:scale-x-100" : "text-muted-foreground after:scale-x-0 hover:after:scale-x-50"
     }`;
 
   return (
@@ -55,8 +55,8 @@ export function Navbar() {
       }`}
     >
       <nav aria-label="Principal" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#home" className="font-semibold tracking-tight">
-          pabrax
+        <a href="#home" className="font-display-tight -ml-1 rounded-md px-1 text-xl">
+          pabrax<span className="text-primary">.</span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -90,6 +90,8 @@ export function Navbar() {
           </Button>
         </div>
       </nav>
+
+      <div aria-hidden="true" className="scroll-progress absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-primary" />
 
       {isMenuOpen && (
         <ul id="mobile-menu" className="space-y-1 border-t px-4 pb-3 pt-2 md:hidden">
