@@ -20,13 +20,11 @@ export default function Home() {
 
       <main id="main">
         <HeroSection />
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <AboutSection />
         <SkillsSection />
         <ExperienceSection />
         <ProjectsSection />
         <ContactSection />
-        </div>
       </main>
 
       <footer className="mx-auto max-w-6xl border-t px-4 py-8 text-center text-sm text-muted-foreground sm:px-6 lg:px-8">
