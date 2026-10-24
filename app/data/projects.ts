@@ -6,11 +6,14 @@ export type Project = {
   imageAlt: string;
   github?: string;
   demo?: string;
+  /** Presentation: rendered as the large feature card. */
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
   {
     title: "SnapLoad",
+    featured: true,
     description:
       "Aplicación web para descargar audio y video de YouTube, YouTube Music y Spotify a partir de una URL. Cliente en Next.js y API REST en FastAPI con yt-dlp y spotdl, soporte para playlists y selección de calidad.",
     technologies: ["Python", "FastAPI", "Next.js", "TypeScript", "yt-dlp", "Docker"],
