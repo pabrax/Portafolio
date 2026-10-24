@@ -2,55 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tokens are HSL channels ("H S% L%") so Tailwind can compose opacity modifiers. */
+/* Tokens are HSL channels ("H S% L%") so Tailwind can compose opacity modifiers.
+   Palette "cobalt and tangerine on ink"; every text/background pair is >= 4.5:1
+   (checked in T1, see odd/tasks/portfolio-redesign.md). */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 228 30% 12%;
+    --background: 240 27% 98%;
+    --foreground: 233 42% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 228 30% 12%;
+    --card-foreground: 233 42% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 228 30% 12%;
-    --primary: 226 72% 48%;
+    --popover-foreground: 233 42% 12%;
+    --primary: 17 90% 41%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 222 24% 95%;
-    --secondary-foreground: 228 30% 16%;
-    --muted: 222 20% 95%;
-    --muted-foreground: 222 10% 38%;
-    --accent: 262 70% 96%;
-    --accent-foreground: 262 55% 38%;
-    --destructive: 348 80% 46%;
+    --secondary: 233 31% 94%;
+    --secondary-foreground: 233 42% 12%;
+    --muted: 233 31% 94%;
+    --muted-foreground: 232 20% 36%;
+    --accent: 230 100% 95%;
+    --accent-foreground: 232 100% 40%;
+    --cobalt: 232 100% 57%;
+    --cobalt-soft: 230 100% 95%;
+    --lemon: 54 88% 67%;
+    --lemon-foreground: 233 42% 12%;
+    --destructive: 348 80% 42%;
     --destructive-foreground: 0 0% 100%;
-    --border: 222 16% 88%;
-    --input: 222 16% 88%;
-    --ring: 226 72% 48%;
+    --border: 232 24% 87%;
+    --input: 232 24% 87%;
+    --ring: 17 90% 41%;
     --radius: 0.75rem;
-    --glow-1: 226 90% 70%;
-    --glow-2: 267 80% 74%;
   }
 
-  .dark {
-    --background: 235 21% 10%;
-    --foreground: 227 35% 88%;
-    --card: 235 20% 13%;
-    --card-foreground: 227 35% 88%;
-    --popover: 235 20% 13%;
-    --popover-foreground: 227 35% 88%;
-    --primary: 221 89% 72%;
-    --primary-foreground: 235 21% 10%;
-    --secondary: 232 20% 19%;
-    --secondary-foreground: 227 35% 88%;
-    --muted: 232 20% 17%;
-    --muted-foreground: 228 18% 68%;
-    --accent: 267 40% 22%;
-    --accent-foreground: 267 82% 82%;
-    --destructive: 348 80% 62%;
-    --destructive-foreground: 235 21% 10%;
-    --border: 232 18% 24%;
-    --input: 232 18% 24%;
-    --ring: 221 89% 72%;
-    --glow-1: 221 89% 60%;
-    --glow-2: 267 70% 60%;
+  /* .theme-ink forces the dark palette on a band inside the light theme. */
+  .dark,
+  .theme-ink {
+    --background: 231 37% 7%;
+    --foreground: 47 27% 94%;
+    --card: 230 35% 13%;
+    --card-foreground: 47 27% 94%;
+    --popover: 230 35% 13%;
+    --popover-foreground: 47 27% 94%;
+    --primary: 18 100% 59%;
+    --primary-foreground: 231 37% 7%;
+    --secondary: 231 38% 18%;
+    --secondary-foreground: 47 27% 94%;
+    --muted: 231 38% 18%;
+    --muted-foreground: 231 21% 71%;
+    --accent: 232 50% 21%;
+    --accent-foreground: 230 100% 82%;
+    --cobalt: 230 100% 78%;
+    --cobalt-soft: 232 50% 21%;
+    --lemon: 54 88% 67%;
+    --lemon-foreground: 231 37% 7%;
+    --destructive: 348 80% 66%;
+    --destructive-foreground: 231 37% 7%;
+    --border: 231 32% 24%;
+    --input: 231 32% 24%;
+    --ring: 18 100% 59%;
   }
 
   * {
@@ -86,26 +94,36 @@
 }
 
 @layer components {
-  /* Single accent gradient, reserved for the hero name. */
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-[hsl(var(--glow-2))] bg-clip-text text-transparent;
+  .theme-ink {
+    @apply bg-background text-foreground;
+  }
+
+  /* Display type: the main visual device of the identity. */
+  .font-display-tight {
+    font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    font-variation-settings: "wdth" 100;
+  }
+
+  /* Lemon marker behind one phrase per view. */
+  .mark-lemon {
+    @apply rounded-sm px-[0.12em];
+    background-color: hsl(var(--lemon));
+    color: hsl(var(--lemon-foreground));
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
   .section-title {
-    @apply mb-10 text-2xl font-semibold tracking-tight sm:text-3xl;
+    @apply font-display-tight mb-10 text-display-md text-balance;
   }
 
   .surface {
-    @apply rounded-lg border bg-card/60 shadow-sm backdrop-blur transition-colors duration-200;
+    @apply rounded-lg border bg-card shadow-sm transition-colors duration-200;
   }
 
   .tech-badge {
     @apply inline-flex items-center rounded-full border bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground;
-  }
-
-  .page-glow {
-    background-image:
-      radial-gradient(40rem 28rem at 10% -5%, hsl(var(--glow-1) / 0.14), transparent 70%),
-      radial-gradient(36rem 26rem at 95% 10%, hsl(var(--glow-2) / 0.12), transparent 70%);
   }
 }

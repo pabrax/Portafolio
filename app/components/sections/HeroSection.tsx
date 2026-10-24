@@ -16,7 +16,7 @@ export function HeroSection() {
       </p>
 
       <h1 id="hero-title" className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-        Hola, soy <span className="gradient-text">Pablo</span>
+        Hola, soy <span className="text-primary">Pablo</span>
       </h1>
 
       <p className="mb-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">

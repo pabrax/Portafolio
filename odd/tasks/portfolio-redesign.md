@@ -1,0 +1,85 @@
+---
+feature: portfolio-redesign
+status: active        # plan drafted 2026-10-24, awaiting owner approval; no source edits yet
+lane: L1+
+tdd: off
+branch: feat/portfolio-redesign   # create at T0, on top of feat/portfolio-refresh (unmerged)
+---
+# Portfolio redesign: a marked identity, emphasis and motion
+
+## Specs
+- S1 "esta bien maquetado, pero es bastante sobrio y plano, no hay texto que resalte, secciones que tengan mas enfasis o una identidad mas marcada" — accept: each section has a distinct visual treatment and at least one emphasized text element; the page no longer reads as one flat indigo surface — check: before/after screenshots at 375/768/1440, light + dark (T0 vs T8).
+- S2 "no tengo lio con que cambie un poco la identidad" — accept: new palette + type pair approved by owner (D1) and used through tokens only — check: no raw hex/hsl outside `globals.css` and `tailwind.config.js` (`grep`).
+- S3 (inherited) quality floor — accept: Lighthouse a11y/best-practices/SEO stay 100; performance not below the T0 baseline (68 today, uninvestigated) and LCP <= 2.5 s; axe 0 violations; `prefers-reduced-motion` respected; keyboard focus visible — check: Lighthouse (Edge, `next start`), `npx axe`, manual keyboard pass.
+
+## Objective
+Give the portfolio a recognizable identity (color, type, composition, one signature motion moment) without changing its content or its server-component structure.
+
+## Problem
+Facts from the audit (2026-10-24): tokens are an indigo/blue HSL family in light and dark (`globals.css:8-54`); one font (Inter, `layout.tsx:53`); no keyframes except accordion; no motion library; every section is the same `SectionHeading` + surface card pattern; Lighthouse performance 68 was never investigated.
+
+## Design brief (frontend-design process; reviewed against its "AI default" list)
+- Direction: "Cobalt and tangerine on ink": confident, editorial, warm accent against a deep cool base. Chosen because the owner is a data/cloud/dev profile who wants energy, not another dark-blue developer template. Rejected as defaults: cream + terracotta, black + acid green, identical rounded cards, eyebrow labels on every heading, numbered 01/02/03 markers (only the Experience timeline is a real sequence).
+- Color (dark / light, proposed hex, validate contrast in T1):
+  - ink `#0C0E1A` / paper `#F8F8FB` (page background)
+  - surface `#161A2E` / `#FFFFFF`
+  - text `#F3F1EA` / `#11142A`
+  - tangerine `#FF6B2C` / `#E5501A` (primary emphasis, CTAs, highlight marker)
+  - cobalt `#3D5BFF` / `#2340FF` (links, secondary emphasis)
+  - lemon `#F5E663` / `#F5E663` (text-highlight marker only, one use per view)
+- Type: display = Bricolage Grotesque (variable, expressive, via `next/font`), body = Inter (already loaded, keeps LCP). Fluid scale with `clamp()`, body line length < 80ch, headline weights/widths used as the visual device.
+- Layout: left-aligned, asymmetric. Hero with an oversized name; About with an off-grid photo treatment; Skills as a bento grid (tile size = relevance); Experience as a timeline with a sticky period column and the current role emphasized; Projects with one large feature card (SnapLoad) and smaller ones; Contact as one bold call-to-action block.
+- Principles: spend boldness in one place (the hero); everything else quiet but with clear hierarchy; motion only for one orchestrated hero entrance, scroll-linked progress/active nav, and responses to hover/focus; no fade-up on every section.
+
+## Scope
+In: `app/globals.css`, `tailwind.config.js`, `app/layout.tsx`, `app/components/**`, `app/page.tsx`, `app/data/*.ts` only for new presentation fields (e.g. `featured`, `size`), `public/` images used by sections.
+Out: copy/claims changes (source of truth stays the owner's LinkedIn text), Next major upgrade, React 19 upgrade, deploy/push/merge.
+
+## Constraints
+- No push/merge without owner approval; commit per task on the feature branch.
+- New dependencies need owner approval before install: `motion` (MIT, needed from T2). GSAP/Lenis are NOT planned. Three.js only via the T7 gate.
+- React is 18 here: `@react-three/fiber` 9 requires React >=19 <19.4, so T7 would need R3F 8 or `ogl`, never a React upgrade inside this feature.
+- Keep sections server components; isolate interactivity in small client islands (`MotionHero`, `ScrollSpy`).
+- Do not add employer data to this plan or to the vault.
+- Skills: `frontend-design` (brief), `web-design-guidelines` (lint each task), `accessibility`, `core-web-vitals`, `webapp-testing` (screenshots).
+
+## Tasks
+- [x] T0 Baseline: create branch; record Lighthouse mobile+desktop and screenshots (375/768/1440, light+dark); find the top 3 causes of performance 68 (S3) — accept: numbers + causes in evidence; no source change — commit: n/a
+- [x] T1 Tokens, fonts, type scale (S2) — accept: new palette in both themes, Bricolage Grotesque loaded with `next/font`, every text/background pair >= 4.5:1 (script output), `npm run build` passes — commit:
+- [ ] T2 Hero: oversized name, lemon highlight on one phrase, one orchestrated entrance with `motion`, static under reduced motion (S1) — accept: LCP <= T0, no layout shift — commit:
+- [ ] T3 About + Skills bento (S1) — accept: skills tiles sized by relevance, readable and reflowing to one column at 375 px — commit:
+- [ ] T4 Experience timeline with sticky period + current role emphasis (S1) — accept: sequence reads correctly with keyboard and screen reader order — commit:
+- [ ] T5 Projects: feature card + secondary cards using the real preview images, CSS-only hover (S1) — accept: images keep `width/height/alt` (playbook A1, P3) — commit:
+- [ ] T6 Navbar scroll-spy + Contact CTA + footer (S1) — accept: active section announced via `aria-current`, targets >= 24 px — commit:
+- [ ] T7 GATE (owner decision D1): optional signature 3D/shader moment in the hero, lazy-loaded, desktop + no-reduced-motion only, static fallback — accept: initial JS unchanged (dynamic import, `ssr:false`), LCP <= 2.5 s, no CLS; if it misses the budget it is dropped — commit:
+- [ ] T8 Verification and cleanup (S3) — accept: Lighthouse/axe/keyboard/reduced-motion results vs T0 in evidence; unused code removed; `web-design-guidelines` clean — commit:
+
+## Delegation
+`implementer` per task; T3-T6 touch disjoint component files and can run in parallel after T1 lands. `reviewer` (fresh context) on T8.
+
+## Verification evidence
+- T0 (2026-10-24, Edge, `next start` :3103, branch `feat/portfolio-redesign` from `feat/portfolio-refresh`): `npm run build` ok, / = 16.9 kB, First Load 120 kB.
+- T0 Lighthouse BEFORE, 3 runs each. Mobile perf [96,64,98] median 96, a11y/bp/seo 100, LCP 1.43 s, TBT 217 ms, CLS 0, FCP 1.2 s. Desktop perf [100,100,97] median 100, LCP 0.56 s, TBT 0, CLS 0. The "68" in the refresh plan was a single noisy run. Baseline to hold: mobile perf >= 96 median, LCP <= 1.5 s (spec ceiling 2.5 s).
+- T0 causes of low outliers (run 2: perf 64, LCP 2.9 s, TBT 2.6 s): (1) host-noise main-thread contention, bootup-time 4.3 s in that run vs ~0.2 s TBT in the others; (2) render-blocking CSS/font chunk (est. 410 ms); (3) unused JS 21 KiB + legacy JS 11 KiB (Next shared chunks). LCP element is the hero paragraph (text), so fonts must not delay it.
+- T1 contrast (`scratchpad/tools/contrast.py`): 26 text/bg pairs across both themes, 0 below 4.5:1 (lowest: light primary on bg 4.81, light primary-fg on primary 5.09). `npx tsc --noEmit` 0 errors, `npm run lint` 0 warnings, `npm run build` ok (/ 16.9 kB, First Load 120 kB, same as T0). Raw colors outside globals/tailwind: only the two `themeColor` hex in `layout.tsx` viewport (meta tag cannot read CSS vars; values updated to new ink/paper).
+- T0 screenshots: scratchpad `portafolio/before-{light,dark}-{375,768,1440}-{fold,full}.png`; looked at before-dark-1440-full: flat dark-indigo, uniform cards, small hero name, identical headings.
+
+## Progress
+Plan only. 0/9 tasks done. Waiting for owner approval of the design brief (D1: palette/type direction; T7: include 3D or not).
+
+## Next step
+Owner approves or edits the brief, then T0.
+
+## Log
+- Decision: light-theme tangerine darkened from the brief's `#E5501A` to `#C73E0A` (white text on `#E5501A` was < 4.5:1 for small button text); dark-theme cobalt lightened from `#3D5BFF` to `#8FA2FF` for link text (4.1:1 on ink). Criterion: UX/accessibility over the exact brief hex. Dark tangerine `#FF6B2C` and lemon unchanged.
+- Decision: `.theme-ink` class (dark tokens scoped to a band) added so the Projects section can be an always-dark band in light mode; avoids a second token set in components.
+- Decision: Bricolage loaded with axes opsz+wdth for headings only; Inter stays the body/LCP face so the LCP paragraph is not gated on the display font.
+- UX references (WebFetch/WebSearch, 2026-10-24; takeaways only, nothing copied):
+  1. brittanychiang.com: name + one-line value statement dominate the hero, then quiet sections separated by rules; experience entries lead with the date. Applied: oversized name, sticky period column (T4).
+  2. Same site: project entries pair a linked title with a screenshot and tech tags, stacked, with one badge-style proof point. Applied: feature card with real preview + secondary cards (T5).
+  3. Same site: skip link first, plain anchor nav. Applied: kept skip link, nav stays real anchors (T6).
+  4. bruno-simon.com: the 3D is the product, but it ships a Low quality setting, a respawn/escape and keyboard/touch/gamepad controls. Applied: T7 moment is decorative only, never carries content, static fallback, pointer-optional.
+  5. Linear/Vercel (secondary write-ups, low confidence): one accent used as punctuation, tight type ramp, negative letter-spacing on display sizes, no animated hero. Applied: tangerine as the single accent; lemon highlight once; tight display tracking. Not applied: "no animated hero" (owner wants dynamism; motion kept to one entrance + one optional canvas).
+  6. General: hierarchy comes from scale contrast (very large vs normal), not from more colors. Applied: display font at clamp(3rem..9rem) hero vs 1rem body.
+- L1 "puedes dentro de cada proyecto hacer una propuesta de diseño, para que cada agente especializado desarrolle, implemente o integre un mejor diseño ... como por ejemplo el portafolio, que a mi parecer esta bien maquetado, pero es bastante sobrio y plano, no hay texto que resalte, secciones que tengan mas enfasis o una identidad mas marcada, aprovecha las skills para hacer el plan de mejora, como te quede mejor si en spec o en organic driven development, pero crea un plan para los 3 proyectos"
+- Lane/method: ODD chosen over SDD (visual change, no API or behavior change; owner delegated the choice). Criterion: simplicity (5) after verified result (2).

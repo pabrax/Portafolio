@@ -1,9 +1,16 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Bricolage_Grotesque, Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
+// Display face: used only for headings, so body text (the LCP element) keeps Inter.
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+  axes: ['opsz', 'wdth'],
+})
 
 const siteUrl = 'https://portafolio-lovat-rho.vercel.app'
 const title = 'Pablo Espinosa (pabrax) | Datos, automatización y backend'
@@ -38,8 +45,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#14151e' },
+    { media: '(prefers-color-scheme: light)', color: '#f8f8fb' },
+    { media: '(prefers-color-scheme: dark)', color: '#0c0e1a' },
   ],
 }
 
@@ -50,7 +57,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${bricolage.variable} font-sans`}>
         <Providers>{children}</Providers>
       </body>
     </html>
