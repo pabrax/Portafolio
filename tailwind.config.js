@@ -73,6 +73,9 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        // Transform-only entrances: text stays painted from the first frame (LCP-safe).
+        rise: { from: { transform: "translateY(105%)" }, to: { transform: "translateY(0)" } },
+        "fade-up": { from: { transform: "translateY(18px)" }, to: { transform: "translateY(0)" } },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -83,6 +86,8 @@ module.exports = {
         },
       },
       animation: {
+        rise: "rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

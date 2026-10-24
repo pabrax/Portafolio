@@ -127,3 +127,26 @@
     @apply inline-flex items-center rounded-full border bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground;
   }
 }
+
+/* Scroll-linked drift for decorative shapes: CSS only, no JS. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .drift-down,
+    .drift-up {
+      animation: drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 700px;
+    }
+    .drift-down {
+      --drift: 120px;
+    }
+    .drift-up {
+      --drift: -80px;
+    }
+    @keyframes drift {
+      to {
+        transform: translateY(var(--drift));
+      }
+    }
+  }
+}
