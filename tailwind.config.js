@@ -63,7 +63,7 @@ module.exports = {
         display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "display-xl": ["clamp(3.5rem, 13vw, 10rem)", { lineHeight: "0.86", letterSpacing: "-0.045em" }],
+        "display-xl": ["clamp(3.5rem, 11vw, 8.5rem)", { lineHeight: "0.86", letterSpacing: "-0.045em" }],
         "display-lg": ["clamp(2.5rem, 7vw, 5.5rem)", { lineHeight: "0.95", letterSpacing: "-0.04em" }],
         "display-md": ["clamp(2rem, 4.5vw, 3.5rem)", { lineHeight: "1", letterSpacing: "-0.035em" }],
       },
