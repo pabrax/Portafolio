@@ -55,7 +55,7 @@ export function Navbar() {
       }`}
     >
       <nav aria-label="Principal" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#home" className="font-display-tight -ml-1 rounded-md px-1 text-xl">
+        <a href="#home" translate="no" className="font-display-tight -ml-1 rounded-md px-1 text-xl">
           pabrax<span className="text-primary">.</span>
         </a>
 

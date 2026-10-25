@@ -135,6 +135,7 @@ export default function HeroOrb() {
       gl!.uniform2f(uLight, cur.x, cur.y);
       gl!.drawArrays(gl!.TRIANGLES, 0, 3);
       canvas!.dataset.ready = "true";
+      canvas!.parentElement!.dataset.orb = "ready";
       raf = requestAnimationFrame(frame);
     }
     raf = requestAnimationFrame(frame);

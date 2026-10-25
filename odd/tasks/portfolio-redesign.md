@@ -69,10 +69,13 @@ Out: copy/claims changes (source of truth stays the owner's LinkedIn text), Next
 - T0 screenshots: scratchpad `portafolio/before-{light,dark}-{375,768,1440}-{fold,full}.png`; looked at before-dark-1440-full: flat dark-indigo, uniform cards, small hero name, identical headings.
 
 ## Progress
-Plan only. 0/9 tasks done. Waiting for owner approval of the design brief (D1: palette/type direction; T7: include 3D or not).
+Paused by owner. T0-T7 done with evidence (commits 3a0c297 T1, da9e87c T2, cb9c674 T3, cdaac0d T4, a74abeb T5, 8637db6 T6, 4dcb300 T7). T8 half done (wip commit): guideline-lint fixes applied (no `transition-all`, color-scheme, touch-action, translate=no, text-balance), dead `Header.tsx` and `.surface` removed, hero shapes shrunk at 768 px (disc/ring overlapped text), orb ready flag via data attribute instead of `:has`. tsc 0, lint 0 warnings, build ok (/ 17.3 kB, First Load 120 kB).
+Not done in T8: final screenshots after the 768 fix, final axe run, paired Lighthouse conclusion, independent reviewer, tick of T8.
+Open performance finding: paired A/B Lighthouse mobile on the same machine (before = commit 8a73df8 worktree vs current): before median 94-96 (TBT ~200-260 ms), after median 83-92 in most pairs (TBT 286-640 ms, LCP 2.1-2.7 s), CLS 0. Cause measured with CPU 4x: style+layout work about +400 ms because the page is larger (below-fold bands). Tried and rejected: `preload:false` for the display font (worse), `content-visibility:auto` on sections (worse in Lighthouse). Desktop after: perf 100, TBT 2-9 ms, LCP 0.54 s. Mobile a11y/best-practices/SEO 100 everywhere. Mobile perf is below the T0 baseline; spec S3 (perf not below baseline) is NOT met on mobile lab numbers and needs a decision or further work.
+T7 gate: orb kept (budget met: initial JS unchanged, desktop LCP 0.68 s, CLS 0.002, lazy 4 s after load, desktop and no-reduced-motion only, static fallback). Evidence for the orb chunk size: ~4.5 kB (712.*.js).
 
 ## Next step
-Owner approves or edits the brief, then T0.
+1) Decide on the mobile perf regression: options are to trim below-fold DOM/CSS (e.g. fewer large text nodes, lighter bento), defer images, or accept and update S3. 2) Re-run axe + screenshots at 375/768/1440 light and dark (after-* PNGs predate the 768 hero fix; light before-shots exist under before2-*). 3) Independent reviewer on T8, then tick T8. Remove the git worktree `scratchpad/before-wt` (`git worktree remove --force`).
 
 ## Log
 - Decision: light-theme tangerine darkened from the brief's `#E5501A` to `#C73E0A` (white text on `#E5501A` was < 4.5:1 for small button text); dark-theme cobalt lightened from `#3D5BFF` to `#8FA2FF` for link text (4.1:1 on ink). Criterion: UX/accessibility over the exact brief hex. Dark tangerine `#FF6B2C` and lemon unchanged.

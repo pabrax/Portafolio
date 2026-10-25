@@ -56,7 +56,7 @@ function FeaturedCard({ project }: { project: Project }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary">
       <div className="relative aspect-[16/9] overflow-hidden border-b bg-muted">
         <Image
           src={project.image}

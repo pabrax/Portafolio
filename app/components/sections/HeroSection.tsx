@@ -19,14 +19,14 @@ export function HeroSection() {
 
         <h1 id="hero-title" className="font-display-tight text-display-xl">
           <span className="block overflow-hidden pb-[0.08em]">
-            <span className="block animate-rise [animation-delay:0.1s]">{first}</span>
+            <span translate="no" className="block animate-rise [animation-delay:0.1s]">{first}</span>
           </span>
           <span className="-mt-[0.08em] block overflow-hidden pb-[0.08em]">
             <span className="block animate-rise [animation-delay:0.22s]">{rest.join(" ")}</span>
           </span>
         </h1>
 
-        <p className="font-display-tight mt-8 max-w-3xl animate-fade-up text-display-md [animation-delay:0.4s]">
+        <p className="font-display-tight mt-8 max-w-3xl text-balance animate-fade-up text-display-md [animation-delay:0.4s]">
           Datos, <span className="mark-lemon">automatización</span> y backend
         </p>
 

@@ -31,11 +31,13 @@
     --input: 232 24% 87%;
     --ring: 17 90% 41%;
     --radius: 0.75rem;
+    color-scheme: light;
   }
 
   /* .theme-ink forces the dark palette on a band inside the light theme. */
   .dark,
   .theme-ink {
+    color-scheme: dark;
     --background: 231 37% 7%;
     --foreground: 47 27% 94%;
     --card: 230 35% 13%;
@@ -67,6 +69,11 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
   }
 
   body {
@@ -116,10 +123,6 @@
 
   .section-title {
     @apply font-display-tight mb-10 text-display-md text-balance;
-  }
-
-  .surface {
-    @apply rounded-lg border bg-card shadow-sm transition-colors duration-200;
   }
 
   .tech-badge {
