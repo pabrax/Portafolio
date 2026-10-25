@@ -116,8 +116,10 @@ export default function HeroOrb() {
     window.addEventListener("pointermove", onMove, { passive: true });
 
     let visible = true;
+    let lost = false;
     let raf = 0;
     const io = new IntersectionObserver(([entry]) => {
+      if (lost) return;
       visible = entry.isIntersecting;
       if (visible && !raf) raf = requestAnimationFrame(frame);
     });
@@ -126,7 +128,7 @@ export default function HeroOrb() {
     const start = performance.now();
     function frame(now: number) {
       raf = 0;
-      if (!visible || document.hidden) return;
+      if (lost || !visible || document.hidden) return;
       cur.x += (target.x - cur.x) * 0.06;
       cur.y += (target.y - cur.y) * 0.06;
       gl!.clearColor(0, 0, 0, 0);
@@ -147,9 +149,9 @@ export default function HeroOrb() {
     // A lost context draws nothing: hand the hero back to the static disc.
     const onLost = (e: Event) => {
       e.preventDefault();
+      lost = true;
       cancelAnimationFrame(raf);
       raf = 0;
-      visible = false;
       delete canvas.dataset.ready;
       delete canvas.parentElement?.dataset.orb;
     };
