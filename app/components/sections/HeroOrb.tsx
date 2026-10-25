@@ -144,14 +144,26 @@ export default function HeroOrb() {
     };
     document.addEventListener("visibilitychange", onVisibility);
 
+    // A lost context draws nothing: hand the hero back to the static disc.
+    const onLost = (e: Event) => {
+      e.preventDefault();
+      cancelAnimationFrame(raf);
+      raf = 0;
+      visible = false;
+      delete canvas.dataset.ready;
+      delete canvas.parentElement?.dataset.orb;
+    };
+    canvas.addEventListener("webglcontextlost", onLost);
+
     return () => {
+      canvas.removeEventListener("webglcontextlost", onLost);
+      delete canvas.parentElement?.dataset.orb;
       cancelAnimationFrame(raf);
       io.disconnect();
       ro.disconnect();
       themeObserver.disconnect();
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("visibilitychange", onVisibility);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, []);
 

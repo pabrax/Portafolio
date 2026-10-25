@@ -15,10 +15,17 @@ export function HeroOrbLoader() {
     if (!mq.matches) return;
     let cancelled = false;
     const load = () => {
-      import("./HeroOrb").then((mod) => {
-        if (!cancelled) setOrb(() => mod.default);
-      });
+      import("./HeroOrb")
+        .then((mod) => {
+          if (!cancelled) setOrb(() => mod.default);
+        })
+        .catch(() => {});
     };
+    // Drop the orb if the viewport narrows or reduced motion is turned on after it loaded.
+    const onChange = () => {
+      if (!mq.matches) setOrb(null);
+    };
+    mq.addEventListener("change", onChange);
     // Wait for the page load plus a grace period so shader compile never competes with first paint or input.
     let timer = 0;
     const schedule = () => {
@@ -28,6 +35,7 @@ export function HeroOrbLoader() {
     else window.addEventListener("load", schedule, { once: true });
     return () => {
       cancelled = true;
+      mq.removeEventListener("change", onChange);
       window.removeEventListener("load", schedule);
       window.clearTimeout(timer);
     };

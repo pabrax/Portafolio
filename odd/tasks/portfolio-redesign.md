@@ -10,7 +10,7 @@ branch: feat/portfolio-redesign   # create at T0, on top of feat/portfolio-refre
 ## Specs
 - S1 "esta bien maquetado, pero es bastante sobrio y plano, no hay texto que resalte, secciones que tengan mas enfasis o una identidad mas marcada" — accept: each section has a distinct visual treatment and at least one emphasized text element; the page no longer reads as one flat indigo surface — check: before/after screenshots at 375/768/1440, light + dark (T0 vs T8).
 - S2 "no tengo lio con que cambie un poco la identidad" — accept: new palette + type pair approved by owner (D1) and used through tokens only — check: no raw hex/hsl outside `globals.css` and `tailwind.config.js` (`grep`).
-- S3 (inherited) quality floor — accept: Lighthouse a11y/best-practices/SEO stay 100; performance not below the T0 baseline (68 today, uninvestigated) and LCP <= 2.5 s; axe 0 violations; `prefers-reduced-motion` respected; keyboard focus visible — check: Lighthouse (Edge, `next start`), `npx axe`, manual keyboard pass.
+- S3 (inherited) quality floor — accept: Lighthouse a11y/best-practices/SEO stay 100; performance not below the T0 baseline (68 today, uninvestigated) and LCP <= ~3.2 s (relative gate accepted by owner 2026-10-25); axe 0 violations; `prefers-reduced-motion` respected; keyboard focus visible — check: Lighthouse (Edge, `next start`), `npx axe`, manual keyboard pass.
 
 ## Objective
 Give the portfolio a recognizable identity (color, type, composition, one signature motion moment) without changing its content or its server-component structure.
@@ -51,7 +51,7 @@ Out: copy/claims changes (source of truth stays the owner's LinkedIn text), Next
 - [x] T4 Experience timeline with sticky period + current role emphasis (S1) — accept: sequence reads correctly with keyboard and screen reader order — commit:
 - [x] T5 Projects: feature card + secondary cards using the real preview images, CSS-only hover (S1) — accept: images keep `width/height/alt` (playbook A1, P3) — commit:
 - [x] T6 Navbar scroll-spy + Contact CTA + footer (S1) — accept: active section announced via `aria-current`, targets >= 24 px — commit:
-- [x] T7 GATE (owner decision D1): optional signature 3D/shader moment in the hero, lazy-loaded, desktop + no-reduced-motion only, static fallback — accept: initial JS unchanged (dynamic import, `ssr:false`), LCP <= 2.5 s, no CLS; if it misses the budget it is dropped — commit:
+- [x] T7 GATE (owner decision D1): optional signature 3D/shader moment in the hero, lazy-loaded, desktop + no-reduced-motion only, static fallback — accept: initial JS unchanged (dynamic import, `ssr:false`), LCP <= ~3.2 s (relative gate accepted by owner 2026-10-25), no CLS; if it misses the budget it is dropped — commit:
 - [x] T8 Verification and cleanup (S3) — accept: Lighthouse/axe/keyboard/reduced-motion results vs T0 in evidence; unused code removed; `web-design-guidelines` clean — commit:
 
 ## Delegation
