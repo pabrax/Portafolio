@@ -1,166 +1,60 @@
-import { Badge } from "../ui/badge";
-import { Card } from "../ui/card";
-import { 
-  Code, 
-  Database, 
-  Globe, 
-  Brain,
-  Terminal,
-  Smartphone,
-  Server,
-  Bot,
-  Cpu,
-  FileCode,
-  Layers,
-  Zap,
-  Package,
-  GitBranch,
-  Settings,
-  Workflow,
-  Cloud
-} from "lucide-react";
+import { skillCategories, type SkillCategory } from "@/data/skills";
+import { Section } from "../common/Section";
+import { SectionHeading } from "../common/SectionHeading";
+import { TechList } from "../common/TechBadge";
 
-// Función para obtener el icono de cada tecnología
-const getTechIcon = (tech: string) => {
-  const iconMap: { [key: string]: React.ElementType } = {
-    // Backend
-    'Python': Code,
-    'Node.js': Server,
-    'Go': Cpu,
-    'C#': FileCode,
-    'Bash': Terminal,
-    'TypeScript': Code,
-    'FastAPI': Zap,
-    
-    // Frontend
-    'React': Layers,
-    'Angular': Globe,
-    'Astro': Zap,
-    'HTML': Globe,
-    'CSS': Smartphone,
-    'JavaScript': Code,
-    
-    // Bases de Datos
-    'MySQL': Database,
-    'SQL Server': Database,
-    'MongoDB': Database,
-    'PostgreSQL': Database,
-    
-    // Herramientas & DevOps
-    'Docker': Package,
-    'Git': GitBranch,
-    'Bots': Bot,
-    'Automatizaciones': Workflow,
-    'ETL': Settings,
-    'Linux': Terminal,
-    'APIs RESTful': Server,
-    'Sistemas RAG': Brain
-  };
-  
-  return iconMap[tech] || Code;
+const tileLayout: Record<string, string> = {
+  Datos: "lg:col-span-2 lg:row-span-2",
+  Cloud: "lg:col-span-1",
+  Backend: "lg:col-span-1",
+  Frontend: "lg:col-span-2",
+  Automatización: "lg:col-span-2",
+  "Infra y herramientas": "lg:col-span-2",
 };
 
-// Función para obtener el link de cada tecnología
-const getTechLink = (tech: string) => {
-  const linkMap: { [key: string]: string } = {
-    // Backend
-    'Python': 'http://github.com/pabrax/py-rag-system',
-    'Node.js': 'https://nodejs.org',
-    'Go': 'https://golang.org',
-    'C#': 'https://github.com/pabrax/Proyecto_ASW',
-    'TypeScript': 'https://github.com/pabrax/portafolio',
-    'FastAPI': 'https://github.com/pabrax/LocalSongs',
-    
-    // Frontend
-    'React': 'https://github.com/pabrax/portafolio',
-    'Angular': 'https://github.com/pabrax/Proyecto_ASW',
-    'Astro': 'https://github.com/pabrax/PortFolio_old',
-    'HTML': '#experience',
-    'CSS': '#projects',
-    'JavaScript': 'https://github.com/pabrax/wikiYMorty',
-    
-    // Bases de Datos
-    'MySQL': '#experience',
-    'SQL Server': '#experience',
-    'MongoDB': '#experience',
-    'PostgreSQL': '#projects',
-    
-    // Herramientas & DevOps
-    'Docker': 'https://docker.com',
-    'Git': 'https://github.com/pabrax',
-    'Linux': '#projects',
-    'Bots': '#projects',
-    'Automatizaciones': '#projects',
-    'ETL': '#experience',
-    'APIs RESTful': '#experience',
-    'Sistemas RAG': '#projects'
-  };
-  
-  return linkMap[tech] || '#projects';
-};
-
-const skillCategories = [
-  {
-    title: "Backend",
-    skills: ["Python", "Node.js", "FastAPI", "Go", "C#", "TypeScript"],
-    badgeClass: "badge-primary"
-  },
-  {
-    title: "Frontend",
-    skills: ["React", "Angular", "Astro", "HTML", "CSS", "JavaScript"],
-    badgeClass: "badge-secondary"
-  },
-  {
-    title: "Bases de Datos",
-    skills: ["MySQL", "SQL Server", "MongoDB", "PostgreSQL"],
-    badgeClass: "badge-accent"
-  },
-  {
-    title: "Herramientas & DevOps",
-    skills: ["Docker", "Git", "Linux", "Bots", "Automatizaciones", "ETL", "APIs RESTful", "Sistemas RAG"],
-    badgeClass: "badge-ai"
-  }
-];
+function LeadTile({ category }: { category: SkillCategory }) {
+  return (
+    <div className="flex flex-col justify-between rounded-3xl bg-primary p-7 text-primary-foreground sm:p-9 lg:col-span-2 lg:row-span-2">
+      <h3 className="text-sm font-bold uppercase tracking-widest">{category.title}</h3>
+      <ul aria-label={category.title} className="font-display-tight mt-10 flex flex-wrap gap-x-5 gap-y-1 text-4xl leading-tight sm:text-5xl">
+        {category.skills.map((skill) => (
+          <li key={skill}>{skill}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="mb-24 scroll-mt-20">
-      <h2 className="mb-8 text-center text-3xl md:text-4xl font-bold text-foreground">
-        Skills & Tecnologías
-      </h2>
-      
-      <div className="grid gap-6 md:grid-cols-2">
-        {skillCategories.map((category) => (
-          <Card key={category.title} className="border-border/50 bg-card/50 p-6 backdrop-blur card-shadow">
-            <h3 className="mb-4 font-semibold text-lg">{category.title}</h3>
-            <div className="flex flex-wrap gap-2">
-              {category.skills.map((skill) => {
-                const Icon = getTechIcon(skill);
-                const link = getTechLink(skill);
-                const isExternalLink = link.startsWith('http');
-                
-                return (
-                  <a
-                    key={skill}
-                    href={link}
-                    target={isExternalLink ? "_blank" : "_self"}
-                    rel={isExternalLink ? "noopener noreferrer" : undefined}
-                    className="inline-block"
-                  >
-                    <Badge 
-                      variant="outline"
-                      className={`${category.badgeClass} cursor-pointer transition-all duration-200 hover:scale-110 hover:shadow-md flex items-center gap-2 px-3 py-1.5`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      {skill}
-                    </Badge>
-                  </a>
-                );
-              })}
+    <Section id="skills" titleId="skills-title" tone="tint">
+      <SectionHeading id="skills-title">Skills y tecnologías</SectionHeading>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {skillCategories.map((category) =>
+          category.weight === "lead" ? (
+            <LeadTile key={category.title} category={category} />
+          ) : (
+            <div
+              key={category.title}
+              className={`rounded-3xl p-6 ${tileLayout[category.title] ?? ""} ${
+                category.title === "Cloud" ? "bg-cobalt text-background" : "border bg-card"
+              }`}
+            >
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-widest">{category.title}</h3>
+              {category.title === "Cloud" ? (
+                <ul aria-label={category.title} className="font-display-tight space-y-1 text-2xl leading-tight">
+                  {category.skills.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
+              ) : (
+                <TechList items={category.skills} label={category.title} />
+              )}
             </div>
-          </Card>
-        ))}
+          ),
+        )}
       </div>
-    </section>
+    </Section>
   );
 }

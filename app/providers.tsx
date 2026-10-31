@@ -7,10 +7,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <ThemeProvider
       attribute="class"
       defaultTheme="dark"
-      enableSystem={false}
+      enableSystem
       storageKey="pabrax-theme"
-      disableTransitionOnChange={true}
-      forcedTheme={undefined}
+      disableTransitionOnChange
     >
       {children}
     </ThemeProvider>

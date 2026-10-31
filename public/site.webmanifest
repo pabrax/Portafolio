@@ -1,24 +1,17 @@
 {
-  "name": "Pabrax - Fullstack Developer & IA Specialist",
+  "name": "Pablo Espinosa (pabrax) | Datos, automatización y backend",
   "short_name": "Pabrax",
-  "description": "Desarrollador Fullstack especializado en IA y automatizaciones inteligentes",
+  "description": "Portafolio de Pablo Espinosa: datos, automatización y backend.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#3b82f6",
-  "orientation": "portrait-primary",
+  "background_color": "#14151e",
+  "theme_color": "#14151e",
   "icons": [
     {
-      "src": "/icon",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/apple-icon",
-      "sizes": "180x180",
-      "type": "image/png"
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
     }
   ],
-  "categories": ["developer", "portfolio", "technology"],
   "lang": "es"
 }

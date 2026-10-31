@@ -41,6 +41,14 @@ module.exports = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        cobalt: {
+          DEFAULT: "hsl(var(--cobalt))",
+          soft: "hsl(var(--cobalt-soft))",
+        },
+        lemon: {
+          DEFAULT: "hsl(var(--lemon))",
+          foreground: "hsl(var(--lemon-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -50,12 +58,24 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      fontSize: {
+        "display-xl": ["clamp(3.5rem, 11vw, 8.5rem)", { lineHeight: "0.86", letterSpacing: "-0.045em" }],
+        "display-lg": ["clamp(2.5rem, 7vw, 5.5rem)", { lineHeight: "0.95", letterSpacing: "-0.04em" }],
+        "display-md": ["clamp(2rem, 4.5vw, 3.5rem)", { lineHeight: "1", letterSpacing: "-0.035em" }],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        // Transform-only entrances: text stays painted from the first frame (LCP-safe).
+        rise: { from: { transform: "translateY(105%)" }, to: { transform: "translateY(0)" } },
+        "fade-up": { from: { transform: "translateY(18px)" }, to: { transform: "translateY(0)" } },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -64,25 +84,12 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        blob: {
-          "0%": {
-            transform: "translate(0px, 0px) scale(1)",
-          },
-          "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
-          },
-          "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
-          },
-          "100%": {
-            transform: "translate(0px, 0px) scale(1)",
-          },
-        },
       },
       animation: {
+        rise: "rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        blob: "blob 7s infinite",
       },
     },
   },

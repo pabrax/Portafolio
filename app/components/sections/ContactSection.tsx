@@ -1,101 +1,50 @@
-import { Card } from "../ui/card";
-import { Button } from "../ui/button";
-import { Mail, Linkedin, Github, Twitter, Globe, Star } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { contactLinks } from "@/data/profile";
+import { Section } from "../common/Section";
+import { SectionHeading } from "../common/SectionHeading";
 
-const contactLinks = [
-  {
-    name: "Email",
-    value: "soypablo0420@gmail.com",
-    href: "mailto:soypablo0420@gmail.com",
-    icon: Mail
-  },
-  {
-    name: "LinkedIn",
-    value: "linkedin.com/in/pabrax",
-    href: "https://linkedin.com/in/pabrax",
-    icon: Linkedin
-  },
-  {
-    name: "Fiverr",
-    value: "fiverr.com/pabrax",
-    href: "https://fiverr.com/pabrax",
-    icon: Star
-  },
-  {
-    name: "X (Twitter)",
-    value: "@pxbrax",
-    href: "https://twitter.com/pxbrax",
-    icon: Twitter
-  }
-];
-// Sección de plataformas eliminada por ser redundante
+const icons = { mail: Mail, linkedin: Linkedin, github: Github } as const;
 
 export function ContactSection() {
   return (
-    <section id="contact" className="mb-24 scroll-mt-20">
-      <h2 className="mb-8 text-center text-3xl md:text-4xl font-bold text-foreground">
-        Contacto & Redes
-      </h2>
-      
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card className="border-border/50 bg-card/50 p-6 backdrop-blur card-shadow">
-          <h3 className="mb-6 text-lg font-bold">
-            <span className="gradient-text-secondary">Información de Contacto</span>
-          </h3>
-          
-          <div className="space-y-4">
-            {contactLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-muted-foreground contact-link-hover"
-                >
-                  <Icon className="h-5 w-5" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">{link.name}</p>
-                    <p>{link.value}</p>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-        </Card>
+    <Section id="contact" titleId="contact-title" tone="primary" className="pb-24 sm:pb-32">
+      <SectionHeading id="contact-title" className="!mb-6 !text-display-xl">
+        Hablemos
+      </SectionHeading>
 
-        <Card className="border-border/50 bg-card/50 p-6 backdrop-blur card-shadow">
-          <h3 className="mb-6 text-lg font-bold">
-            <span className="gradient-text-ai">¡Trabajemos Juntos!</span>
-          </h3>
-          
-          <div className="mb-6">
-            <p className="mb-4 text-muted-foreground">
-              ¿Buscas un <span className="gradient-text font-semibold">desarrollador Full Stack con enfoque en IA y automatización</span> para tu próximo proyecto? 
-              Tengo experiencia creando <span className="gradient-text-accent font-semibold">soluciones web completas</span> e integrando{" "}
-              <span className="gradient-text-ai font-semibold">componentes inteligentes</span> en entornos reales.
-            </p>
-            <p className="mb-6 text-muted-foreground">
-              Desde <span className="gradient-text-secondary font-semibold">APIs RESTful escalables</span> hasta{" "}
-              <span className="gradient-text font-semibold">interfaces modernas con React o Angular</span>, pasando por{" "}
-              <span className="gradient-text-ai font-semibold">sistemas RAG, bots y automatizaciones con IA</span>. 
-              Disponible para <span className="gradient-text-accent font-semibold">proyectos freelance y colaboraciones</span>.
-            </p>
-            <Button className="w-full btn-primary-hover border-2 border-primary/20 hover:border-primary/40" asChild>
-              <a href="mailto:soypablo0420@gmail.com">
-                <Mail className="mr-2 h-4 w-4" />
-                Enviar Mensaje
+      <p className="mb-10 max-w-xl text-xl leading-snug sm:text-2xl">
+        Si quieres conversar sobre datos, automatización, backend o IA aplicada, escríbeme.
+      </p>
+
+      <a
+        href="mailto:soypablo0420@gmail.com"
+        className="inline-flex min-h-12 items-center gap-3 rounded-full bg-primary-foreground px-7 py-3 text-base font-semibold text-primary transition-transform hover:-translate-y-0.5"
+      >
+        <Mail className="h-5 w-5" aria-hidden="true" />
+        Enviar mensaje
+      </a>
+
+      <ul className="mt-14 grid gap-6 border-t border-primary-foreground pt-8 sm:grid-cols-3">
+        {contactLinks.map(({ name, value, href, icon }) => {
+          const Icon = icons[icon];
+          const external = href.startsWith("http");
+          return (
+            <li key={name}>
+              <a
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="group flex items-center gap-3"
+              >
+                <Icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                <span>
+                  <span className="block text-xs font-bold uppercase tracking-widest">{name}</span>
+                  <span className="underline decoration-2 underline-offset-4 group-hover:decoration-4">{value}</span>
+                </span>
               </a>
-            </Button>
-          </div>
-
-        </Card>
-      </div>
-
-      <div className="mt-20 border-t border-border/50 pt-12 text-center text-muted-foreground">
-        <p>© Pabrax 2025. Desarrollado con Next.js y Tailwind CSS.</p>
-      </div>
-    </section>
+            </li>
+          );
+        })}
+      </ul>
+    </Section>
   );
 }

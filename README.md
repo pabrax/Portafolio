@@ -4,7 +4,10 @@
 Un portafolio moderno, rápido y totalmente adaptable, creado con **Next.js 15**, **React 18** y **Tailwind CSS**.
 Diseñado para mostrar proyectos, habilidades y trayectoria de forma limpia y profesional.
 
-![preview_portafolio](./public/preview/portafolio_preview.jpeg)
+<p align="center">
+  <img src="public/preview/screenshots/hero-dark.png" alt="Portafolio en tema oscuro" width="49%">
+  <img src="public/preview/screenshots/hero-light.png" alt="Portafolio en tema claro" width="49%">
+</p>
 
 
 ## ✨ Características principales
@@ -56,9 +59,12 @@ npm start
 portafolio/
 ├── app/
 │   ├── components/          # Componentes principales
+│   │   ├── sections/       # Secciones: Hero, Sobre mí, Skills, Experiencia, Proyectos, Contacto
+│   │   ├── layout/         # Navbar
+│   │   ├── common/         # Section, SectionHeading, TechBadge
 │   │   ├── ui/             # Elementos de interfaz base
-│   │   ├── theme-toggle.tsx # Switch de tema claro/oscuro
-│   │   └── ...             # Secciones del portafolio
+│   │   └── theme-toggle.tsx # Switch de tema claro/oscuro
+│   ├── data/               # Contenido tipado: perfil, skills, experiencia, proyectos
 │   ├── globals.css         # Estilos globales
 │   ├── layout.tsx          # Layout general
 │   ├── page.tsx            # Página principal
@@ -74,11 +80,19 @@ portafolio/
 
 Este portafolio está hecho para que lo adaptes fácilmente a tu estilo:
 
-1. **Contenido:** Edita los componentes dentro de `app/components/`
+1. **Contenido:** Edita los datos en `app/data/` (perfil, skills, experiencia y proyectos)
 2. **Estilos:** Ajusta los colores o fuentes en `app/globals.css` y `tailwind.config.js`
 3. **Tema:** Modifica las variables de tema según tu paleta
 4. **Componentes:** Agrega nuevas secciones o elementos reutilizables
 
+
+## 🖼️ Capturas
+
+| Proyectos | Móvil |
+|---|---|
+| <img src="public/preview/screenshots/projects.png" alt="Sección de proyectos" width="640"> | <img src="public/preview/screenshots/mobile.png" alt="Vista móvil" width="240"> |
+
+Página completa: [`full-page.png`](public/preview/screenshots/full-page.png).
 
 ## Diseño Responsivo
 
